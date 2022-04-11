@@ -1,6 +1,8 @@
 # l33tbot
 bot translator to make messages l33t
 
+run bot.py to start
+
 can translate inline inside chat with other people just @botname
 
 1.Russian => L33T
@@ -14,6 +16,7 @@ can translate inline inside chat with other people just @botname
 
 config.py excluded
 ```
+#default config.py
 BOT_TOKEN="TOKEN"
 BOT_OWNER=TelegramUserId
 ```
