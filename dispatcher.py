@@ -91,32 +91,46 @@ async def process_translation(message: types.Message, state: FSMContext):
 async def inline_handler (query: types.InlineQuery):
     text = query.query or "BBeDuTe TEKCT"
 
-    article = [
-                types.InlineQueryResultArticle(
-                    id = 1,
-                    title ='PyCCkUu',
-                    description= traslate(text, dic.first),
-                    input_message_content=types.InputTextMessageContent(message_text=traslate(text, dic.first))
-                ),
-                types.InlineQueryResultArticle(
-                    id=2,
-                    title='AnGLIySKIy',
-                    description= traslate(text, dic.second),
-                    input_message_content=types.InputTextMessageContent(message_text=traslate(text, dic.second))
-                ),
-                types.InlineQueryResultArticle(
-                    id=3,
-                    title='l33t',
-                    description= english_to_leetspeak(text),
-                    input_message_content=types.InputTextMessageContent(message_text=english_to_leetspeak(text))
-                ),
-                types.InlineQueryResultArticle(
-                    id=4,
-                    title='zalgo',
-                    description= zalgo().zalgofy(text),
-                    input_message_content=types.InputTextMessageContent(message_text=zalgo().zalgofy(text))
-                ),
-               ]
+    translation = {
+        "russian": traslate(text, dic.first),
+        "english": traslate(text, dic.second),
+        "leet": english_to_leetspeak(text),
+        "zalgo": zalgo().zalgofy(text),
+    }
 
+    article = [
+        types.InlineQueryResultArticle(
+            id=1,
+            title='PyCCkUu',
+            description=translation['russian'],
+            input_message_content=types.InputTextMessageContent(
+                message_text=translation['russian']
+            )
+        ),
+        types.InlineQueryResultArticle(
+            id=2,
+            title='AnGLIySKIy',
+            description=translation['english'],
+            input_message_content=types.InputTextMessageContent(
+                message_text=translation['english']
+            )
+        ),
+        types.InlineQueryResultArticle(
+            id=3,
+            title='l33t',
+            description=translation['leet'],
+            input_message_content=types.InputTextMessageContent(
+                message_text=translation['leet']
+            )
+        ),
+        types.InlineQueryResultArticle(
+            id=4,
+            title='zalgo',
+            description=translation['zalgo'],
+            input_message_content=types.InputTextMessageContent(
+                message_text=translation['zalgo']
+            )
+        ),
+    ]
     await query.answer(article,cache_time=1,is_personal=True)
 

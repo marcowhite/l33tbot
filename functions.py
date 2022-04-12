@@ -39,7 +39,7 @@ def english_to_leetspeak(message):
     }
     leetspeak = ""
     for char in message:
-        if char.lower() in char_map and random.random() <= 0.70:  # 70% convert
+        if char.lower() in char_map and random.random() <= 0.50:  # 70% convert
             possible_replacements = char_map[char.lower()]
             leet_replacement = random.choice(possible_replacements)
             leetspeak = leetspeak + leet_replacement
